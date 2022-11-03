@@ -1,0 +1,100 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{stix2} %times
+%\usepackage{newpxtext, newpxmath} %palatino
+\usepackage{graphicx}
+\usepackage[french]{babel}
+\usepackage[autolanguage]{numprint}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{hyphenat}
+\usepackage{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{csquotes}
+\usepackage[style=apa, backend=biber]{biblatex}
+\addbibresource{bibliographie/bibliographie.bib}
+
+\hyphenation{mate-mática recu-perar}
+
+\geometry{
+    a4paper,
+    left=30mm,
+    right=30mm,
+    top=35mm,
+    bottom=35mm,
+}
+
+\providecommand{\keywords}[1]{\noindent\textbf{\textit{Mots clefs}} : #1}
+
+\DeclareFieldFormat{bibhyperrefnonest}{%
+    \DeclareFieldFormat{bibhyperref}{##1}%
+    \bibhyperref{#1}}
+
+\DeclareCiteCommand{\parencite}[\mkbibparens]
+    {\usebibmacro{cite:init}%
+     \usebibmacro{prenote}}
+    {\usebibmacro{citeindex}%
+     \printtext[bibhyperrefnonest]{\usebibmacro{cite}}}
+    {}
+    {\usebibmacro{postnote}%
+     \usebibmacro{cite:post}}
+
+\DeclareCiteCommand{\textcite}
+    {\usebibmacro{cite:init}%
+     \usebibmacro{prenote}}
+    {\usebibmacro{citeindex}%
+     \printtext[bibhyperrefnonest]{\usebibmacro{textcite}}}
+    {}
+    {\usebibmacro{textcite:postnote}%
+     \usebibmacro{cite:post}}
+
+
+\begin{document}
+
+\newcommand*{\gl}{\guillemotleft \space}
+\newcommand*{\gr}{\guillemotright \space}
+
+\input{couverture/couverture.tex}
+
+\begin{spacing}{1.25}
+
+\titleformat{\section}[hang]{\Large\bfseries}{\thesection.}{0.75em}{}[\hrule]
+
+\input{premieres-pages/remerciement.tex}
+\newpage
+
+\input{premieres-pages/resume.tex}
+\newpage
+
+\tableofcontents
+\newpage
+
+\input{corps/introduction.tex}
+\newpage
+
+\input{corps/methode.tex}
+\newpage
+
+\input{corps/resultats.tex}
+\newpage
+
+\input{corps/conclusion.tex}
+\newpage
+
+\printbibliography[heading=bibintoc]
+
+\newpage
+
+\appendix
+\addcontentsline{toc}{part}{Annexes}
+
+\begin{center}
+    \LARGE
+    \textbf{Annexes}
+\end{center}
+
+\input{corps/annexe-a.tex}
+
+\end{spacing}
+\end{document}
